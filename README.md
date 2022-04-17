@@ -1,21 +1,24 @@
-# repository-template-java
-A template to use when starting a new open source project.
+# Repository for Rover - robotics project
+A simple robot design (inspired by Mars Rover) that can interact with its environment by using behaviour-based robotics to avoid obstacles, detect colored regions, and localize (keep track of its location and travel to its destionation).
 
-## perform a repository wide search and replace for "repository-template-java" and the "target-repo-name"
+## Prerequisites
 
-e.g. by using
+You will need LeJOS, which is a Java runtime and VM for Lego Mindstorms, along with a Java IDE of your choosing with the toolchain needed to build and send the compiled bytecode to the Mindstorms unit.
 
 ```
 cp -R repository-template-java/ new-name && cd new-name && git config --local --unset remote.origin.url && git config --local --add remote.origin.url git@github.com:baloise/new-name.git && git reset --hard $(git commit-tree FETCH_HEAD^{tree} -m "Initial contribution") &&  git grep -l 'repository-template-java' | xargs sed -i '' -e 's/repository-template-java/new-name/g' && mvn clean verify && git add -A && git commit -m "Rename from template to new-name" && cd ..
 ```
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bf6fa237dd934970991ecba2c66db23e)](https://app.codacy.com/app/baloise/repository-template-java?utm_source=github.com&utm_medium=referral&utm_content=baloise/repository-template-java&utm_campaign=Badge_Grade_Dashboard)
-[![DepShield Badge](https://depshield.sonatype.org/badges/baloise/repository-template-java/depshield.svg)](https://depshield.github.io)
-![Build Status](https://github.com/baloise/repository-template-java/workflows/CI/badge.svg)
 
-## the [docs](docs/index.md)
 
-## releasing
+## Hardware
+- A Lego Mindstorms differential drive robot, with the following sensors:
+    - Colour sensor, facing down;
+    - Sonar sensor, facing the front, for distance detection.
+ 
+![rover-image](https://user-images.githubusercontent.com/63178523/163710948-11988101-8630-400d-9630-e76169c56942.jpg)
 
-Run e.g. on main: `mvn -B release:prepare` e.g. via [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io#https://github.com/baloise/repository-template-java)
+## Architecture
+We will be using the subsumption method as is represented below:
 
-Subsequently the GitHub action worksflow "create release" will pick up the published tag and release and deploy the artifacts in the Github package registry.
+![rover](https://user-images.githubusercontent.com/63178523/163710869-094923de-f8ba-41d0-8d8d-5499ea60a2ff.png)
+
